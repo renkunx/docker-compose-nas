@@ -12,8 +12,8 @@ services:
       - --ping=true
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
-      - --entrypoints.web.address=:80
-      - --entrypoints.web-secure.address=:443
+      - --entrypoints.web.address=:8989
+      - --entrypoints.web-secure.address=:44380
       - --entrypoints.web.http.redirections.entryPoint.to=web-secure
       - --entrypoints.web.http.redirections.entryPoint.scheme=https
       - --entrypoints.web.http.redirections.entrypoint.permanent=true
@@ -28,8 +28,8 @@ services:
       - --certificatesresolvers.myresolver.acme.email=${LETS_ENCRYPT_EMAIL}
       - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
     ports:
-      - "80:80"
-      - "443:443"
+      - "8989:80"
+      - "44380:443"
     volumes:
       - ${CONFIG_ROOT:-.}/letsencrypt:/letsencrypt
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
